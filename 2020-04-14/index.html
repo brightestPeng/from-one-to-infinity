@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>遍历一个dom树</title>
+  </head>
+  <body>
+    <div class="domTree">
+      <a>
+        <b>
+          <C></C>
+          <D></D>
+        </b>
+        <E>
+          <F></F>
+          <G></G>
+        </E>
+      </a>
+    </div>
+
+    <script>
+      //遍历所有的dom树
+      const domTree = document.getElementsByClassName("domTree")[0];
+
+      //后进先出
+      class Stack {
+        constructor() {
+          this.data = [];
+        }
+        //后进先出
+        push(element) {
+          this.data.push(element);
+        }
+
+        //取出最后一个元素
+        pop() {
+          return this.data.pop();
+        }
+
+        //返回栈顶的元素
+        peek() {
+          return this.data[this.data.length];
+        }
+
+        //是否为空
+        isEmpty() {
+          return this.data.length === 0 ? true : false;
+        }
+
+        //移除所有元素
+        clear() {
+          this.data.length = 0;
+        }
+
+        //返回元素个数
+        size() {
+          return this.data.length;
+        }
+      }
+
+      let stack = new Stack();
+
+      previous(domTree);
+
+      function previous(node) {
+        stack.push(node);
+        if (node && node.nodeType === 1) {
+          const item = stack.pop();
+          console.log(item.nodeName);
+        }
+
+        for (let i = 0; i < node.childNodes.length; i++) {
+          previous(node.childNodes[i]);
+        }
+      }
+
+      //先序遍历
+      // function traversal(node){
+      //   //当nodeType属性为元素时，nodeType === 1
+      //   if(node && node.nodeType === 1){
+      //     console.log(node.nodeName);
+      //   }
+
+      //   let childrens = node.childNodes;
+      //   for(let i=0;i<childrens.length;i++){
+      //     let item = childrens[i];
+      //     if(item  &&  item.nodeType === 1){
+      //       traversal(item);
+      //     }
+      //   }
+      // }
+
+      //先序遍历
+      // function
+    </script>
+  </body>
+</html>
