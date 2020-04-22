@@ -26,3 +26,13 @@ enum Direction2{
 function fucA(str:string,message:Direction):void{
 
 }
+
+function getNum() {
+  return 1
+}
+
+enum test{
+  B,
+  C = getNum(),
+  A = getNum(),
+}

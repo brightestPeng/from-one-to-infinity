@@ -69,6 +69,11 @@ let noUser:void = undefined;
 let u:undefined = undefined;
 let u1:null = null;
 
+let u2:void = undefined;
+
+let u4:never;
+// let u3:null = u4;
+
 //使用联合类型赋值
 let us:string | undefined = undefined;
 
@@ -92,3 +97,7 @@ create(null)
  let strLength:number = (<string>someValue).length;
 
  let strLength1:number = (someValue as string).length;
+
+
+ //symbol
+//  let a:symbol = Symbol()

@@ -61,3 +61,7 @@ function pickCard(x:any):any{
   }
 }
 
+
+abstract class D{
+  abstract makeSound(): void;
+}
