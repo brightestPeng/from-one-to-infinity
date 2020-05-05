@@ -1,3 +1,5 @@
+import moment from "moment";
+
 //当外部作用域执行完毕后，内部函数还存活（仍在其他地方被引用）时，闭包才真正发挥其作用。
 
 //Timer 定时器  x存活时长 定时器回调执行 或 clearTimeout() 被调用
@@ -127,46 +129,170 @@ clearBtn.onclick = function () {
 };
 
 //避免全局函数的工厂函数
-let loader = (function createLoader() {
-  let app = {};
-  let factory
+// let loader = (function createLoader() {
+//   let app = {};
+//   let factory
 
-  app.factory = function (params) {
-    if(typeof params === "string"){
-      return function(){
+//   app.factory = function (params) {
+//     if(typeof params === "string"){
+//       return function(){
 
-      }
-    }
+//       }
+//     }
 
-    return this;
-  };
+//     return this;
+//   };
 
-  app.start = function(){
+//   app.start = function(){
 
+//   }
+
+//   function App(){
+//     let factories = {};
+//   }
+
+//   App.prototype.factory = function(param){
+//     if(typeof param === "string"){
+//       return function(fn){
+//         if(typeof fn === "function"){
+//           this.factories[param][fn.name] = fn
+//         }
+//       }
+//     }
+//   }
+
+//   App.prototype.start = function(){
+
+//   }
+
+//   return function () {
+//     return app;
+//   };
+// })();
+
+// let app = loader();
+
+// for(var i=0;i<5;i++){
+//   setTimeout(function(){
+//     console.log(moment().format("YYYY-MM-DD HH:mm:ss"),i)
+//   },1000)
+// }
+
+// console.log(moment().format("YYYY-MM-DD HH:mm:ss"),i);
+
+// for (let i = 0; i < 5; i++) {
+//   setTimeout(function() {
+//       console.log(moment().format("YYYY-MM-DD HH:mm:ss"), i);
+//   }, 1000);
+// }
+
+// console.log(moment().format("YYYY-MM-DD HH:mm:ss"), i);
+
+//闭包的多种形式
+
+for (var i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log(i, "1");
+  }, 1000);
+}
+
+//最常见的
+for (var i = 0; i < 5; i++) {
+  (function (i) {
+    setTimeout(function () {
+      console.log(i, "2");
+    }, 1000);
+  })(i);
+}
+
+//定时器的第三个参数
+for (var i = 0; i < 5; i++) {
+  setTimeout(
+    function (i) {
+      console.log(i, "3");
+    },
+    1000,
+    i
+  );
+}
+
+var output = function (i) {
+  setTimeout(function () {
+    console.log(i, "4");
+  }, 1000);
+};
+
+//第三种
+for (var i = 0; i < 5; i++) {
+  output(i);
+}
+
+//第四种
+for (let i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log(i, "5");
+  }, 1000);
+}
+
+// for (var b = 0; b < 5; b++) {
+//   let timer = setTimeout(function () {
+//     console.log(b, "5");
+//   }, 1000);
+//   if(timer){
+
+//   }
+// }
+// var b = 0;
+// let timer = null;
+
+// while (b < 5) {
+//   if (!timer) {
+//     timer = setTimeout(function () {
+//       console.log(b, "6");
+
+//       timer = null;
+//       b = b + 1;
+//     }, 1000);
+//   }
+// }
+
+// console.log(b, "6");
+
+//间隔一秒，输出1，2，3，4，5  异步，一定要想到promise
+// let tasks = [];
+
+// let fuc = function (i) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(function () {
+//       console.log(i, "7");
+//       resolve();
+//     }, 1000 * i);
+//   });
+// };
+
+// for (var c = 0; c < 5; c++) {
+//   tasks.push(fuc(c));
+// }
+
+// Promise.all(tasks).then(() => {
+//   setTimeout(function () {
+//     console.log(i, "7");
+//   }, 1000);
+// });
+
+let fuc = function (i) {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      console.log(i,"8");
+      resolve();
+    }, 1000);
+  });
+};
+
+async function addFuc() {
+  for (var i = 0; i <= 5; i++) {
+    await fuc(i);
   }
+}
 
-  function App(){
-    let factories = {};
-  }
-
-  App.prototype.factory = function(param){
-    if(typeof param === "string"){
-      return function(fn){
-        if(typeof fn === "function"){
-          this.factories[param][fn.name] = fn
-        }
-      }
-    }
-  }
-
-  App.prototype.start = function(){
-
-  }
-
-
-  return function () {
-    return app;
-  };
-})();
-
-let app = loader();
+addFuc();
