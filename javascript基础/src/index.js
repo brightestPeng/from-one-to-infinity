@@ -8,4 +8,5 @@
 // import "./02/_eval";
 
 // import "./03/深入理解javascript原型";
-import "./03/_create";
+// import "./03/_create";
+import "./03/继承的类型";
