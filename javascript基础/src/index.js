@@ -11,5 +11,6 @@
 // import "./03/_create";
 // import "./03/继承的类型";
 
-import "./04/promise";
+// import "./04/promise";
+import "./04/_promise2";
 // import "./04/macroTaskAndmicroTask";
