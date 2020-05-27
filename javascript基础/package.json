@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server",
-    "promise":"promises-aplus-tests ./src/04/index.js"
+    "node":"node ./src/05/node_index.js",
+    "test": "promises-aplus-tests ./src/04/_promise2.js"
   }
 }

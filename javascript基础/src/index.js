@@ -9,4 +9,12 @@
 
 // import "./03/深入理解javascript原型";
 // import "./03/_create";
-import "./03/继承的类型";
+// import "./03/继承的类型";
+
+// import "./04/promise";
+// import "./04/_promise2";
+// import "./04/macroTaskAndmicroTask";
+
+//event loop
+
+import "./05/index"
