@@ -18,4 +18,7 @@
 //event loop
 
 // import "./05/index"
-import "./06/index"
+
+//纯函数
+// import "./06/index"
+import "./06/compose";
