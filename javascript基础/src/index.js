@@ -21,4 +21,5 @@
 
 //纯函数
 // import "./06/index"
-import "./06/compose";
+// import "./06/compose";
+import "./06/08_either/right";
